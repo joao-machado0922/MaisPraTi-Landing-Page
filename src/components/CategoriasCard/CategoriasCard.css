@@ -1,0 +1,13 @@
+.card {
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 1rem;
+}
+
+.card:hover{
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+    border-color: red;
+    cursor: pointer;
+}

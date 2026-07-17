@@ -1,20 +1,33 @@
+import Header from "./components/Header/Header";
+import CategoriasCard from "./components/CategoriasCard/CategoriasCard";
+import InsertCategorias from "./components/InsertCategorias/InsertCategorias";
+
 import { useEffect, useState } from "react";
 import { selectCategorias, selectInstrucoes } from "./services/bancoService";
 
+import './App.css';
+
 function App() {
 
+  const [listaCategorias, setListaCategorias] = useState([]);
 
   useEffect(() => {
     async function carregar() {
-      const data = await selectInstrucoes();
-      console.log(data)
+      const data = await selectCategorias();
+      setListaCategorias(data);
     }
     carregar();
   }, []);
 
   return (
     <>
-    <h1>Página em desenvolvimento</h1>
+      <Header />
+      <div className="cardView">
+          {listaCategorias.map((categoria) => (
+            <CategoriasCard key={categoria.id} categoria={categoria} />
+          ))}
+      </div>
+      <InsertCategorias/>
     </>
 
   );

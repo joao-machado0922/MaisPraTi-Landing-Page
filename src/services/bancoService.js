@@ -3,12 +3,12 @@ import supabase from "./supabase";
 // CATEGORIAS
 
 export async function selectCategorias() {
-    const response = await supabase.from("categorias").select("id, categoria");
+    const response = await supabase.from("categorias").select("id, descricao");
     return response.data;
 }
 
-export async function insertCategorias() {
-
+export async function insertCategorias(novaCategoria) {
+    await supabase.from("categorias").insert({descricao: novaCategoria});
 }
 
 export async function updateCategorias() {
