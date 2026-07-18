@@ -2,7 +2,7 @@ import { useState } from "react";
 import { insertCategorias } from "../../services/bancoService";
 import './Modal.css';
 
-function Modal({ fechar }) {
+function Modal({ fechar, atualizarCategorias }) {
     const [novaCategoria, setNovaCategoria] = useState("");
 
     async function salvar(e) {
@@ -10,6 +10,7 @@ function Modal({ fechar }) {
 
         try {
             await insertCategorias(novaCategoria);
+            await atualizarCategorias();
         } catch(error) {
             alert("Erro ao cadastrar categoria!");
         }

@@ -6,17 +6,19 @@ import { useEffect, useState } from "react";
 import { selectCategorias, selectInstrucoes } from "../../services/bancoService";
 
 import './Home.css';
+import { Link } from "react-router-dom";
 
 function Home() {
 
     const [listaCategorias, setListaCategorias] = useState([]);
 
+    async function carregarCategorias() {
+        const data = await selectCategorias();
+        setListaCategorias(data);
+    }
+
     useEffect(() => {
-        async function carregar() {
-            const data = await selectCategorias();
-            setListaCategorias(data);
-        }
-        carregar();
+        carregarCategorias();
     }, []);
 
     return (
@@ -24,10 +26,12 @@ function Home() {
             <Header />
             <div className="cardView">
                 {listaCategorias.map((categoria) => (
-                    <CategoriasCard key={categoria.id} categoria={categoria} />
+                    <Link key={categoria.id} to={`/categoria/${categoria.slug}`}>
+                        <CategoriasCard categoria={categoria} />
+                    </Link>
                 ))}
             </div>
-            <InsertCategorias />
+            <InsertCategorias atualizarCategorias={carregarCategorias} />
         </>
 
     );

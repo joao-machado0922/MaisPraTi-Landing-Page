@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './InsertCategorias.css';
 import Modal from './Modal';
 
-function InsertCategorias() {
+function InsertCategorias({ atualizarCategorias }) {
 
     const [modalAberto, setModalAberto] = useState(false);
 
@@ -10,7 +10,7 @@ function InsertCategorias() {
         <button className='insert--btn' onClick={() => setModalAberto(true)}>+</button>
 
         {modalAberto && (
-            <Modal fechar={() => setModalAberto(false)} />
+            <Modal atualizarCategorias={atualizarCategorias} fechar={() => setModalAberto(false)} />
         )}
     </>
 }
