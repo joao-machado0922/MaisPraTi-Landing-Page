@@ -1,34 +1,17 @@
-import Header from "./components/Header/Header";
-import CategoriasCard from "./components/CategoriasCard/CategoriasCard";
-import InsertCategorias from "./components/InsertCategorias/InsertCategorias";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { useEffect, useState } from "react";
-import { selectCategorias, selectInstrucoes } from "./services/bancoService";
-
-import './App.css';
+import Home from "./pages/Home/Home";
+import Categoria from "./pages/Categoria/Categoria";
 
 function App() {
 
-  const [listaCategorias, setListaCategorias] = useState([]);
-
-  useEffect(() => {
-    async function carregar() {
-      const data = await selectCategorias();
-      setListaCategorias(data);
-    }
-    carregar();
-  }, []);
-
   return (
-    <>
-      <Header />
-      <div className="cardView">
-          {listaCategorias.map((categoria) => (
-            <CategoriasCard key={categoria.id} categoria={categoria} />
-          ))}
-      </div>
-      <InsertCategorias/>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/categoria/:categoria" element={<Categoria />}></Route>
+      </Routes>
+    </BrowserRouter>
 
   );
 }
