@@ -1,48 +1,20 @@
-import supabase from "./supabase";
+import * as bancoDev from "./bancoServiceDev.js";
+import * as bancoProd from "./bancoServiceProd.js";
 
-// CATEGORIAS
+const banco =
+    import.meta.env.VITE_DATABASE_MODE === "prod"
+        ? bancoProd
+        : bancoDev;
 
-export async function selectCategorias() {
-    const response = await supabase.from("categorias").select("id, descricao, slug");
-    return response.data;
-}
-
-export async function selectCategoriaBySlug(slug) {
-    const response = await supabase.from("categorias").select("id, descricao, slug").eq("slug", slug).single();
-    return response.data;
-}
-
-export async function insertCategorias(novaCategoria) {
-    await supabase.from("categorias").insert({descricao: novaCategoria});
-}
-
-export async function updateCategorias() {
-
-}
-
-export async function deleteCategorias() {
-
-}
-
-// INSTRUÇÕES
-
-export async function selectInstrucoes() {
-    const response = await supabase.from("instrucoes").select("id, ordem, anotacao, categoria_id");
-    return response.data;
-}
-
-export async function selectInstrucoesByCategoria(categoriaId) {
-    const response = await supabase.from("instrucoes").select("id, ordem, anotacao, categoria_id").eq("categoria_id", categoriaId).order("ordem");
-    return response.data;
-}
-
-export async function insertInstrucoes() {
-
-}
-
-export async function updateInstrucoes() {
-
-}
-
-export async function deleteInstrucoes() {
-}
+export const {
+    selectCategorias,
+    selectCategoriaBySlug,
+    insertCategorias,
+    updateCategorias,
+    deleteCategorias,
+    selectInstrucoes,
+    selectInstrucoesByCategoria,
+    insertInstrucoes,
+    updateInstrucoes,
+    deleteInstrucoes
+} = banco;

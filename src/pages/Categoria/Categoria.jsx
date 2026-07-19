@@ -1,11 +1,12 @@
 import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 import Header from "../../components/Header/Header";
+import InstrucoesCategoria from '../../components/InstrucoesCategoria/InstrucoesCategoria';
+
+import { selectCategoriaBySlug, selectInstrucoesByCategoria } from '../../services/bancoService';
 
 import './Categoria.css';
-import { useEffect, useState } from 'react';
-import { selectCategoriaBySlug, selectInstrucoesByCategoria } from '../../services/bancoService';
-import InstrucoesCategoria from '../../components/InstrucoesCategoria/InstrucoesCategoria';
 
 function Categoria() {
     const { categoria } = useParams();
@@ -21,7 +22,7 @@ function Categoria() {
                 setCategoriaSlug(categoriaResponse);
                 const instrucoesResponse = await selectInstrucoesByCategoria(categoriaResponse.id);
                 setListaInstrucoes(instrucoesResponse);
-            } catch(error) {
+            } catch (error) {
                 console.log(error)
             } finally {
                 setCarregando(false);
@@ -32,19 +33,28 @@ function Categoria() {
     }, [categoria]);
 
     if (carregando) {
-        return <p>Carregando</p>;
+        return (
+            <>
+                <Header />
+                <p>Carregando</p>
+            </>
+        )
     }
 
     if (!categoriaSlug) {
-        return <h1>Categoria Inexistente</h1>
+        return (
+            <>
+                <Header />
+                <h1>Categoria Inexistente</h1>
+            </>)
     }
 
     console.log(listaInstrucoes);
 
     return (
         <>
-        <Header />
-        <InstrucoesCategoria listaInstrucoes={listaInstrucoes} />
+            <Header />
+            <InstrucoesCategoria listaInstrucoes={listaInstrucoes} />
         </>
     )
 }

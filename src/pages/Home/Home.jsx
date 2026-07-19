@@ -1,16 +1,21 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Header from "../../components/Header/Header";
 import CategoriasCard from "../../components/CategoriasCard/CategoriasCard";
-import InsertCategorias from "../../components/InsertCategorias/InsertCategorias";
+import FormInsertCategorias from "../../components/Forms/FormInsertCategorias";
+import Modal from "../../components/Modal/Modal";
 
-import { useEffect, useState } from "react";
-import { selectCategorias, selectInstrucoes } from "../../services/bancoService";
+import { selectCategorias } from "../../services/bancoService";
 
 import './Home.css';
-import { Link } from "react-router-dom";
 
 function Home() {
 
+    const [modalAberto, setModalAberto] = useState(false);
+
     const [listaCategorias, setListaCategorias] = useState([]);
+    const navigate = useNavigate();
 
     async function carregarCategorias() {
         const data = await selectCategorias();
@@ -24,14 +29,19 @@ function Home() {
     return (
         <>
             <Header />
-            <div className="cardView">
+            <div className="card_view">
                 {listaCategorias.map((categoria) => (
-                    <Link key={categoria.id} to={`/categoria/${categoria.slug}`}>
-                        <CategoriasCard categoria={categoria} />
-                    </Link>
+                    <div key={categoria.id} onClick={() => navigate(`/categoria/${categoria.slug}`)}>
+                        <CategoriasCard categoria={categoria} fechar={() => setModalAberto(false)} atualizarCategorias={carregarCategorias} />
+                    </div>
                 ))}
             </div>
-            <InsertCategorias atualizarCategorias={carregarCategorias} />
+            <button className='insert--btn' onClick={() => setModalAberto(true)}>+</button>
+            {modalAberto && (
+                <Modal>
+                    <FormInsertCategorias fechar={() => setModalAberto(false)} atualizarCategorias={carregarCategorias} />
+                </Modal>
+            )}
         </>
 
     );
