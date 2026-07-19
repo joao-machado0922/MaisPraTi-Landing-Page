@@ -15,6 +15,11 @@ function Categoria() {
     const [listaInstrucoes, setListaInstrucoes] = useState([]);
     const [carregando, setCarregando] = useState(true);
 
+    async function carregarInstrucoes() {
+        const data = await selectInstrucoesByCategoria(categoriaSlug.id);
+        setListaInstrucoes(data);
+    }
+
     useEffect(() => {
         async function buscarInstrucoes() {
             try {
@@ -54,7 +59,8 @@ function Categoria() {
     return (
         <>
             <Header />
-            <InstrucoesCategoria listaInstrucoes={listaInstrucoes} />
+            <h1>{categoriaSlug.nome}</h1>
+            <InstrucoesCategoria listaInstrucoes={listaInstrucoes} atualizarAnotacoes={carregarInstrucoes} categoria={categoriaSlug} />
         </>
     )
 }

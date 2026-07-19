@@ -32,22 +32,24 @@ export async function deleteCategorias(id) {
 // INSTRUÇÕES
 
 export async function selectInstrucoes() {
-    const response = await supabase.from("instrucoes_dev").select("id, ordem, anotacao, categoria_id");
+    const response = await supabase.from("instrucoes_dev").select("id, anotacao, categoria_id");
     return response.data;
 }
 
 export async function selectInstrucoesByCategoria(categoriaId) {
-    const response = await supabase.from("instrucoes_dev").select("id, ordem, anotacao, categoria_id").eq("categoria_id", categoriaId).order("ordem");
+    const response = await supabase.from("instrucoes_dev").select("id, anotacao, categoria_id").eq("categoria_id", categoriaId).order("id");
     return response.data;
 }
 
-export async function insertInstrucoes() {
-
+export async function insertInstrucoes(anotacao, categoriaId) {
+    const response = await supabase.from("instrucoes_dev").insert({anotacao: anotacao, categoria_id: categoriaId});
 }
 
-export async function updateInstrucoes() {
-
+export async function updateInstrucoes(anotacao, anotacaoId) {
+    const response = await supabase.from("instrucoes_dev").update({anotacao: anotacao}).eq("id", anotacaoId);
+    return response.data;
 }
 
-export async function deleteInstrucoes() {
+export async function deleteInstrucoes(id) {
+    await supabase.from("instrucoes_dev").delete().eq("id", id);
 }
