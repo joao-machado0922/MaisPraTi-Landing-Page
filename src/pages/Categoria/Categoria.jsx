@@ -5,7 +5,7 @@ import Header from "../../components/Header/Header";
 import './Categoria.css';
 import { useEffect, useState } from 'react';
 import { selectCategoriaBySlug, selectInstrucoesByCategoria } from '../../services/bancoService';
-import InstrucoesCategoria from '../../components/InstrucoesCategoria/Instrucoescategoria';
+import InstrucoesCategoria from '../../components/InstrucoesCategoria/InstrucoesCategoria';
 
 function Categoria() {
     const { categoria } = useParams();
