@@ -1,0 +1,45 @@
+.anotacoes_input {
+    margin-bottom: 1rem;
+}
+
+.nenhuma_anotacao {
+    font-family: var(--fonte-texto);
+    color: var(--cinza);
+}
+
+.instrucoes_view {
+    width: 50%;
+    margin: 1rem 0;
+}
+
+.instrucoes_view tbody tr:nth-child(odd) {
+    background-color: rgb(221, 221, 221);
+}
+
+.instrucoes_view tbody tr:nth-child(even) {
+    background-color: rgb(171, 171, 171);
+}
+
+.anotacao_data {
+    text-align: left !important;
+    width: 80%;
+}
+
+.pencil_data, .trash_data {
+    text-align: center;
+    width: 10%;
+}
+
+.instrucoes_view td {
+    padding: 4px .75rem;
+}
+
+@media(max-width: 450px) {
+    .instrucoes_view {
+        width: 90%;
+    }
+
+    .anotacoes_input {
+    margin-bottom: .5rem;
+}
+}

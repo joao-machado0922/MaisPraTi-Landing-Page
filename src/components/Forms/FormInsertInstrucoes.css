@@ -1,0 +1,19 @@
+.anotacoes_input .modal_form {
+    width: 60vw;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.anotacoes_input .modal_form input {
+    border-radius: 8px;
+    border: none;
+}
+
+@media (max-width: 450px) {
+    .anotacoes_input .modal_form {
+        width: 90vw;
+        flex-direction: column;
+    }
+}
+

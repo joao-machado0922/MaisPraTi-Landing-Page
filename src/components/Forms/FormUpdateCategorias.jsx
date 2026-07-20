@@ -28,7 +28,7 @@ function FormUpdateCategorias({ categoria, fechar, atualizarCategorias }) {
     return (
         <form className="modal_form" onSubmit={(e) => salvar(e)}>
             <h2 className="modal_titulo">Editar Categoria</h2>
-            <input type="text" autoFocus placeholder="Nome da categoria" value={nome} onChange={(e) => setNome(e.target.value)} required />
+            <input type="text" placeholder="Nome da categoria" value={nome} onChange={(e) => setNome(e.target.value)} required />
             <input type="text" placeholder="Descrição da Categoria" value={descricao} onChange={(e) => setDescricao(e.target.value)} required />
             <div className="modal_botoes">
                 <button id="btn-salvar" type="submit">Editar</button>

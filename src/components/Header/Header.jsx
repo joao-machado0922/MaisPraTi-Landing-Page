@@ -1,10 +1,14 @@
+import { useNavigate } from 'react-router-dom';
 import './Header.css';
 
-function Header (){
+function Header() {
+
+    const navigate = useNavigate();
+
     return (
-        <div className="header">
-            <h1>IF Pré-Impressão</h1>
-        </div>
+        <header>
+            <h1 className="header_titulo" onClick={() => navigate(`/`)}>Pré-Impressão</h1>
+        </header>
     )
 }
 

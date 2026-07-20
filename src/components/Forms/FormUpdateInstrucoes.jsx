@@ -26,7 +26,7 @@ function FormUpdateInstrucoes({ anotacaoParam, fechar, atualizarInstrucoes }) {
     return (
         <form className="modal_form" onSubmit={(e) => salvar(e)}>
             <h2 className="modal_titulo">Editar Anotação</h2>
-            <input type="text" autoFocus placeholder="Anotação" value={anotacao} onChange={(e) => setAnotacao(e.target.value)} required />
+            <input type="text" placeholder="Anotação" value={anotacao} onChange={(e) => setAnotacao(e.target.value)} required />
             <div className="modal_botoes">
                 <button id="btn-salvar" type="submit">Editar</button>
                 <button id="btn-cancelar" type="button" onClick={fechar}>Cancelar</button>

@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import InstrucoesCategoria from '../../components/InstrucoesCategoria/InstrucoesCategoria';
 
 import { selectCategoriaBySlug, selectInstrucoesByCategoria } from '../../services/bancoService';
@@ -41,7 +42,12 @@ function Categoria() {
         return (
             <>
                 <Header />
-                <p>Carregando</p>
+
+                <main className="categoria_container">
+                    <h2 className="categoria_titulo">Carregando</h2>
+                </main>
+
+                <Footer />
             </>
         )
     }
@@ -50,7 +56,12 @@ function Categoria() {
         return (
             <>
                 <Header />
-                <h1>Categoria Inexistente</h1>
+
+                <main className="categoria_container">
+                    <h2 className="categoria_titulo">Categoria Inexistente</h2>
+                </main>
+
+                <Footer />
             </>)
     }
 
@@ -59,8 +70,13 @@ function Categoria() {
     return (
         <>
             <Header />
-            <h1>{categoriaSlug.nome}</h1>
-            <InstrucoesCategoria listaInstrucoes={listaInstrucoes} atualizarAnotacoes={carregarInstrucoes} categoria={categoriaSlug} />
+
+            <main className="categoria_container">
+                <h2 className="categoria_titulo">{categoriaSlug.nome}</h2>
+                <InstrucoesCategoria listaInstrucoes={listaInstrucoes} atualizarAnotacoes={carregarInstrucoes} categoria={categoriaSlug} />
+            </main>
+
+            <Footer />
         </>
     )
 }

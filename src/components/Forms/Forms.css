@@ -7,6 +7,9 @@
 }
 
 .modal_form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     padding: 16px;
     border-radius: 16px;
     background-color: rgb(237, 237, 237);
@@ -17,6 +20,8 @@
     padding: 10px;
     font-size: 16px;
     box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid;
 }
 
 .modal_form button {
@@ -28,6 +33,7 @@
 .modal_titulo {
     margin-top: 0;
     margin-bottom: 20px;
+    font-family: var(--texto-titulo);
 }
 
 .modal_botoes {
@@ -47,4 +53,10 @@
     background-color: var(--laranja);
     color: white;
     border: none;
+}
+
+@media(max-width: 450px) {
+    .modal {
+        width: 90%;
+    }
 }

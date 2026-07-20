@@ -9,6 +9,7 @@ import Modal from "../../components/Modal/Modal";
 import { selectCategorias } from "../../services/bancoService";
 
 import './Home.css';
+import Footer from "../../components/Footer/Footer";
 
 function Home() {
 
@@ -29,19 +30,25 @@ function Home() {
     return (
         <>
             <Header />
-            <div className="card_view">
-                {listaCategorias.map((categoria) => (
-                    <div key={categoria.id} onClick={() => navigate(`/categoria/${categoria.slug}`)}>
-                        <CategoriasCard categoria={categoria} fechar={() => setModalAberto(false)} atualizarCategorias={carregarCategorias} />
-                    </div>
-                ))}
-            </div>
-            <button className='insert--btn' onClick={() => setModalAberto(true)}>+</button>
-            {modalAberto && (
-                <Modal>
-                    <FormInsertCategorias fechar={() => setModalAberto(false)} atualizarCategorias={carregarCategorias} />
-                </Modal>
-            )}
+
+            <main>
+                <h2 className="pagina_subtitulo">Manual de informações</h2>
+                <div className="card_view">
+                    {listaCategorias.map((categoria) => (
+                        <div key={categoria.id} onClick={() => navigate(`/categoria/${categoria.slug}`)}>
+                            <CategoriasCard categoria={categoria} fechar={() => setModalAberto(false)} atualizarCategorias={carregarCategorias} />
+                        </div>
+                    ))}
+                </div>
+                <button className='insert--btn' onClick={() => setModalAberto(true)}>+</button>
+                {modalAberto && (
+                    <Modal>
+                        <FormInsertCategorias fechar={() => setModalAberto(false)} atualizarCategorias={carregarCategorias} />
+                    </Modal>
+                )}
+            </main>
+
+            <Footer />
         </>
 
     );

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import PencilIcon from '../../assets/pencil.svg?react';
-import TrashIcon from '../../assets/trash.svg?react';
+import PencilIcon from '../../assets/imagens/pencil.svg?react';
+import TrashIcon from '../../assets/imagens/trash.svg?react';
 import Modal from '../Modal/Modal';
 import FormDeleteCategorias from '../Forms/FormDeleteCategorias';
 import FormUpdateCategorias from '../Forms/FormUpdateCategorias';
@@ -10,8 +10,8 @@ import './CategoriasCard.css';
 
 function CategoriasCard({ categoria, atualizarCategorias }) {
 
-    const [modalUpdateAberto, setModalUpdateAberto] = useState(false);
-    const [modalDeleteAberto, setModalDeleteAberto] = useState(false);
+    const [modalAberto, setModalAberto] = useState(false);
+    const [acao, setAcao] = useState("");
 
     return (
         <>
@@ -20,24 +20,29 @@ function CategoriasCard({ categoria, atualizarCategorias }) {
                     <PencilIcon className="card_icon" onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        setModalUpdateAberto(true)
+                        setAcao("editar");
+                        setModalAberto(true);
                     }} title="Editar Categoria" alt="Editar" />
                     <TrashIcon className="card_icon" onClick={(e) => {
-                        e.preventDefault()
-                        e.stopPropagation()
-                        setModalDeleteAberto(true)
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setAcao("deletar");
+                        setModalAberto(true);
                     }} title="Deletar Categoria" alt="Deletar" />
                 </div>
                 <h2 className="card_titulo">{categoria.nome}</h2>
-                <hr className="card_divisoria" />
-                <p className="card_descricao">{categoria.descricao}</p>
+                <div className="card_show">
+                    <h3 className="card_subtitulo">{categoria.nome}</h3>
+                    <hr className="card_divisoria" />
+                    <p className="card_descricao">{categoria.descricao}</p>
+                </div>
             </div>
-            {modalDeleteAberto && <Modal>
-                <FormDeleteCategorias categoria={categoria} fechar={() => setModalDeleteAberto(false)} atualizarCategorias={atualizarCategorias} />
-            </Modal>}
-            {modalUpdateAberto && <Modal>
-                <FormUpdateCategorias categoria={categoria} fechar={() => setModalUpdateAberto(false)} atualizarCategorias={atualizarCategorias} />
-            </Modal>}
+            {modalAberto &&
+                <Modal>
+                    {acao === "editar" && <FormUpdateCategorias categoria={categoria} fechar={() => setModalAberto(false)} atualizarCategorias={atualizarCategorias} />}
+                    {acao === "deletar" && <FormDeleteCategorias categoria={categoria} fechar={() => setModalAberto(false)} atualizarCategorias={atualizarCategorias} />}
+                </Modal>
+            }
         </>
     )
 }

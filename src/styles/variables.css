@@ -1,4 +1,7 @@
 :root {
-    --laranja: #D87A1C;
+    --laranja: #F28941;
     --cinza: #403F3D;
+    --divisoria: #9c9b9adc;
+    --fonte-titulo: "Outfit", Helvetica, sans-serif;
+    --fonte-texto: Arial, serif;
 }

@@ -1,10 +1,12 @@
 import { useState } from "react";
 import FormInsertInstrucoes from "../Forms/FormInsertInstrucoes";
 import Modal from "../Modal/Modal.jsx"
-import PencilIcon from '../../assets/pencil.svg?react';
-import TrashIcon from '../../assets/trash.svg?react';
+import PencilIcon from '../../assets/imagens/pencil.svg?react';
+import TrashIcon from '../../assets/imagens/trash.svg?react';
 import FormUpdateInstrucoes from "../Forms/FormUpdateInstrucoes.jsx";
 import FormDeleteInstrucoes from "../Forms/FormDeleteInstrucoes.jsx";
+
+import './InstrucoesCategoria.css';
 
 function InstrucoesCategoria({ listaInstrucoes, atualizarAnotacoes, categoria }) {
 
@@ -15,46 +17,47 @@ function InstrucoesCategoria({ listaInstrucoes, atualizarAnotacoes, categoria })
     if (listaInstrucoes.length === 0) {
         return (
             <>
-                <p>Nenhuma anotação</p>
-                <button className="btn-insert" onClick={() => {
-                    setAcao("inserir")
-                    setModalAberto(true)
-                }}>Inserir</button>
-                {modalAberto &&
-                    <Modal>
-                        <FormInsertInstrucoes fechar={() => setModalAberto(false)} atualizarInstrucoes={atualizarAnotacoes} categoria={categoria} />
-                    </Modal>}
+                <div className="anotacoes_input">
+                    <FormInsertInstrucoes atualizarInstrucoes={atualizarAnotacoes} categoria={categoria} />
+                </div>
+                <p className="nenhuma_anotacao">Nenhuma anotação</p>
             </>
         )
     }
     return (
         <>
-            <ul className="instrucoes_view">
-                {listaInstrucoes.map((instrucao) => (
-                    <li key={instrucao.id}>
-                        {instrucao.anotacao}<PencilIcon className="card_icon" onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            setAnotacaoSelecionada(instrucao);
-                            setAcao("atualizar");
-                            setModalAberto(true);
-                        }} title="Editar Categoria" alt="Editar" />
-                        <TrashIcon className="card_icon" onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            setAnotacaoSelecionada(instrucao);
-                            setAcao("deletar");
-                            setModalAberto(true);
-                        }} title="Deletar Categoria" alt="Deletar" /></li>
-                ))}
-            </ul>
-            <button className="btn-insert" onClick={() => {
-                setAcao("inserir")
-                setModalAberto(true)
-            }}>Inserir</button>
+            <div className="anotacoes_input">
+                <FormInsertInstrucoes atualizarInstrucoes={atualizarAnotacoes} categoria={categoria} />
+            </div>
+            <table className="instrucoes_view">
+                <tbody>
+                    {listaInstrucoes.map((instrucao) => (
+                        <tr key={instrucao.id}>
+                            <td className="anotacao_data">{instrucao.anotacao}</td>
+                            <td className="pencil_data">
+                                <PencilIcon className="card_icon" onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    setAnotacaoSelecionada(instrucao);
+                                    setAcao("atualizar");
+                                    setModalAberto(true);
+                                }} title="Editar Categoria" alt="Editar" />
+                            </td>
+                            <td className="trash_data">
+                                <TrashIcon className="card_icon" onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    setAnotacaoSelecionada(instrucao);
+                                    setAcao("deletar");
+                                    setModalAberto(true);
+                                }} title="Deletar Categoria" alt="Deletar" />
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
             {modalAberto &&
                 <Modal>
-                    {acao === "inserir" && <FormInsertInstrucoes fechar={() => setModalAberto(false)} atualizarInstrucoes={atualizarAnotacoes} categoria={categoria} />}
                     {acao === "atualizar" && <FormUpdateInstrucoes anotacaoParam={anotacaoSelecionada} fechar={() => setModalAberto(false)} atualizarInstrucoes={atualizarAnotacoes} />}
                     {acao === "deletar" && <FormDeleteInstrucoes anotacao={anotacaoSelecionada} fechar={() => setModalAberto(false)} atualizarInstrucoes={atualizarAnotacoes} />}
                 </Modal>
