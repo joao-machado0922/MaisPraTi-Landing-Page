@@ -1,9 +1,12 @@
 import './Modal.css';
 
-function Modal({ children }) {
+function Modal({ children, fechar }) {
 
     return (
-        <div className="overlay">
+        <div className="overlay" onClick={(e) => {
+            e.stopPropagation()
+            fechar()
+        }}>
             <div className="modal" onClick={(e) => e.stopPropagation()}>
                 {children}
             </div>

@@ -1,5 +1,6 @@
 .categoria_container {
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
 }
@@ -8,4 +9,34 @@
     color: var(--cinza);
     font-family: var(--fonte-titulo);
     margin-bottom: 1rem;
+}
+
+.categoria_voltar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: absolute;
+    left: 4rem;
+    cursor: pointer;
+    color: var(--cinza);
+    font-family: var(--fonte-titulo);
+    font-weight: bold;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+@media(max-width: 450px) {
+    .categoria_voltar {
+        left: 1rem;
+        gap: .5rem;
+        font-size: 16px;
+    }
+
+    .categoria_container {
+        margin-bottom: 3rem;
+    }
+
+    .categoria_titulo {
+        margin-top: 3rem;
+    }
 }
