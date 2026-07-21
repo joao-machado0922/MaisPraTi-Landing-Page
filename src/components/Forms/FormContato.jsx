@@ -12,7 +12,7 @@ function FormContato({ fechar }) {
 
     return (
         <form className="modal_form" onSubmit={(e) => salvar(e)}>
-            <h2 className="modal_titulo">Deseja excluir essa categoria?</h2>
+            <h2 className="modal_titulo">Olá! Preencha os campos abaixo e mande sua mensagem</h2>
             <input type="text" placeholder="Nome" required></input>
             <input type="email" placeholder="Email" required></input>
             <textarea id=""placeholder="Mensagem" required />
