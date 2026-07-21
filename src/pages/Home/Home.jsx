@@ -42,7 +42,7 @@ function Home() {
                 </div>
                 <button className='insert--btn' onClick={() => setModalAberto(true)}>+</button>
                 {modalAberto && (
-                    <Modal>
+                    <Modal fechar={() => setModalAberto(false)}>
                         <FormInsertCategorias fechar={() => setModalAberto(false)} atualizarCategorias={carregarCategorias} />
                     </Modal>
                 )}

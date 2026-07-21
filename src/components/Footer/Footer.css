@@ -1,12 +1,17 @@
 footer {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    gap: 10rem;
     background-color: var(--cinza);
     padding: 2rem 7rem;
     height: 30vh;
     color: white;
+}
+
+.informacoes_celular {
+    display: none;
 }
 
 .footer_logo {
@@ -39,14 +44,33 @@ footer {
         padding: 16px;
         align-items: center;
         height: auto;
-        gap: 4px;
+        gap: 2.5rem;
+    }
+
+    .informacoes_celular {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 20px;
+    }
+
+    .informacoes_celular h3 {
+        font-size: 16px
+    }
+
+    .footer_imagemCelular {
+        width: 24px;
+    }
+
+    .footer_celular_telefone, .footer_celular_contatos {
+        font-size: 14px;
     }
 
     .footer_telefone, .footer_contatos {
-        font-size: 12px;
+        display: none;
     }
 
     .footer_logo {
-        width: 100px;
+        width: 120px;
     }
 }

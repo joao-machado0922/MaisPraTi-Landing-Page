@@ -57,7 +57,7 @@ function InstrucoesCategoria({ listaInstrucoes, atualizarAnotacoes, categoria })
                 </tbody>
             </table>
             {modalAberto &&
-                <Modal>
+                <Modal fechar={() => setModalAberto(false)}>
                     {acao === "atualizar" && <FormUpdateInstrucoes anotacaoParam={anotacaoSelecionada} fechar={() => setModalAberto(false)} atualizarInstrucoes={atualizarAnotacoes} />}
                     {acao === "deletar" && <FormDeleteInstrucoes anotacao={anotacaoSelecionada} fechar={() => setModalAberto(false)} atualizarInstrucoes={atualizarAnotacoes} />}
                 </Modal>

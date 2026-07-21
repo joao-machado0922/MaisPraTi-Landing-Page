@@ -11,7 +11,7 @@
     z-index: 1;
 }
 
-.card:hover{
+.card:hover {
     min-height: 180px;
     height: auto;
     z-index: 100;
@@ -84,4 +84,18 @@
         opacity: 1;
         gap: 1rem;
     }
+
+    .card:hover {
+        transform: scale(1);
+        min-height: auto;
+    }
+
+    .card_show {
+    display: grid;
+    box-sizing: border-box;
+}
+
+    .card_titulo {
+    display: none;
+}
 }

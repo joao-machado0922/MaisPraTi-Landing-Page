@@ -32,13 +32,13 @@ function CategoriasCard({ categoria, atualizarCategorias }) {
                 </div>
                 <h2 className="card_titulo">{categoria.nome}</h2>
                 <div className="card_show">
-                    <h3 className="card_subtitulo">{categoria.nome}</h3>
+                    <h2 className="card_subtitulo">{categoria.nome}</h2>
                     <hr className="card_divisoria" />
                     <p className="card_descricao">{categoria.descricao}</p>
                 </div>
             </div>
             {modalAberto &&
-                <Modal>
+                <Modal fechar={() => setModalAberto(false)}>
                     {acao === "editar" && <FormUpdateCategorias categoria={categoria} fechar={() => setModalAberto(false)} atualizarCategorias={atualizarCategorias} />}
                     {acao === "deletar" && <FormDeleteCategorias categoria={categoria} fechar={() => setModalAberto(false)} atualizarCategorias={atualizarCategorias} />}
                 </Modal>
