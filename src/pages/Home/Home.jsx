@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Header from "../../components/Header/Header";
 import CategoriasCard from "../../components/CategoriasCard/CategoriasCard";
 import FormInsertCategorias from "../../components/Forms/FormInsertCategorias";
 import Modal from "../../components/Modal/Modal";
@@ -9,7 +8,6 @@ import Modal from "../../components/Modal/Modal";
 import { selectCategorias } from "../../services/bancoService";
 
 import './Home.css';
-import Footer from "../../components/Footer/Footer";
 
 function Home() {
 
@@ -29,7 +27,6 @@ function Home() {
 
     return (
         <>
-            <Header />
 
             <main>
                 <h2 className="pagina_subtitulo">Manual de informações</h2>
@@ -48,7 +45,6 @@ function Home() {
                 )}
             </main>
 
-            <Footer />
         </>
 
     );
