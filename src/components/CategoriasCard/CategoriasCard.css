@@ -30,7 +30,10 @@
     display: none;
 }
 
-.card p, .card h1, .card h2, .card h3 {
+.card p,
+.card h1,
+.card h2,
+.card h3 {
     user-select: none;
 }
 
@@ -38,7 +41,8 @@
     display: none;
 }
 
-.card_titulo, .card_subtitulo {
+.card_titulo,
+.card_subtitulo {
     display: grid;
     color: var(--laranja);
     font-family: var(--fonte-titulo);
@@ -91,11 +95,11 @@
     }
 
     .card_show {
-    display: grid;
-    box-sizing: border-box;
-}
+        display: grid;
+        box-sizing: border-box;
+    }
 
     .card_titulo {
-    display: none;
-}
+        display: none;
+    }
 }
